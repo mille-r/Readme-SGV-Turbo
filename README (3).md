@@ -1,7 +1,6 @@
-
 # 🔥 SGV Turbo
 
-**SGV Turbo** é uma extensão para o navegador Google Chrome que acelera e automatiza tarefas repetitivas no sistema interno **SGV** (app.mamm.com.br/SGV). Ela foi criada para quem trabalha diariamente com devoluções, assistências técnicas e lançamentos financeiros — e cansou de fazer as mesmas ações manuais dezenas de vezes por dia.
+**SGV Turbo** é uma extensão para o navegador Google Chrome que acelera e automatiza tarefas repetitivas no sistema interno **SGV** (app.mamm.com.br/SGV) e no sistema de pedidos **Vercan**. Ela foi criada para quem trabalha diariamente com devoluções, assistências técnicas, lançamentos financeiros e controle de entregas — e cansou de fazer as mesmas ações manuais dezenas de vezes por dia.
 
 > A extensão funciona como um painel lateral que aparece automaticamente nas páginas certas do SGV, sem precisar trocar de aba ou abrir outras janelas.
 
@@ -9,7 +8,7 @@
 
 ## 📦 O que a extensão faz
 
-A SGV Turbo possui **três módulos principais**, cada um atuando em uma área diferente do sistema:
+A SGV Turbo possui **cinco módulos principais**, cada um atuando em uma área diferente do sistema:
 
 ---
 
@@ -61,7 +60,19 @@ Aparece automaticamente na página de consulta de Assistências Técnicas.
 - **Seleção e edição em massa:** após consultar, você seleciona as assistências que deseja alterar (ou usa "selecionar todas") e aplica um novo status para todas de uma vez.
 - **Comentários pré-definidos:** ao alterar o status, você pode escolher um comentário já formatado em uma lista de opções — sem precisar digitar. Exemplos: "Aguardando peça", "Produto enviado para fábrica", "Pedido à fábrica e impresso para separação".
 - **Copia resultados** para a área de transferência com um clique, no formato código + status, pronto para colar em planilhas ou relatórios.
-- **Aba: Solicitar NF** — gera automaticamente uma mensagem padronizada para solicitar nota fiscal de um produto de assistência, já preenchida com os dados da assistência consultada.
+
+**Aba: Solicitar NF**
+
+Gera automaticamente uma mensagem padronizada para solicitar nota fiscal de um produto de assistência, já preenchida com os dados da assistência consultada.
+
+**Aba: Gerar Relatório**
+
+Para análise e acompanhamento de incidências de assistências técnicas:
+
+- Com um clique, a extensão analisa **todas as assistências visíveis na página** — percorrendo automaticamente todas as páginas de resultados.
+- Agrupa os dados por produto, contando o número de incidências de cada um e as peças mais solicitadas.
+- **Gera um PDF profissional** com ranking de produtos por incidência, lista de peças por produto com número e descrição, período analisado e data de geração — pronto para ser enviado ao fabricante ou usado internamente.
+- Ideal para identificar os produtos com mais problemas técnicos e embasar solicitações de peças ou melhorias junto aos fornecedores.
 
 ---
 
@@ -79,18 +90,51 @@ Aparece automaticamente na página de lançamentos de contas.
 
 ---
 
+### 🚚 4. Soma de Entregas
+
+Aparece automaticamente na página de Entregas / Pedidos Disponíveis do SGV.
+
+**O problema que resolve:** A página de pedidos disponíveis para entrega exibe uma lista de pedidos, mas não mostra o valor total do conjunto — o que exigiria abrir cada pedido manualmente e somar os valores.
+
+**O que a extensão faz:**
+
+- **Calcula automaticamente o valor total** de todos os pedidos listados na página assim que ela carrega, consultando cada pedido em paralelo para ser rápido.
+- **Exibe o total diretamente na página**, logo acima da lista de resultados, no formato de moeda (R$).
+- **Atualiza automaticamente** sempre que uma nova pesquisa é realizada ou a lista é modificada — sem precisar recarregar a página ou clicar em nada.
+
+---
+
+### 🏷️ 5. Etiquetas
+
+Aparece automaticamente na página de etiquetas do sistema **Vercan** (opcaomoveis.verp.vercan.com.br).
+
+**O problema que resolve:** Imprimir etiquetas de vários pedidos exige baixar e abrir o PDF de cada um individualmente. Com dezenas de pedidos, isso se torna um processo demorado e repetitivo.
+
+**O que a extensão faz:**
+
+- **Adiciona checkboxes** ao lado de cada pedido listado na página, permitindo selecionar quais etiquetas você quer baixar.
+- **Baixa e une automaticamente** os PDFs de todas as etiquetas selecionadas, gerando um **único arquivo PDF** com todas as etiquetas em sequência.
+- Exibe o progresso do download em tempo real (ex: "3/10 etiquetas...") e, ao finalizar, faz o download automático do arquivo unificado.
+- Elimina a necessidade de abrir e imprimir cada etiqueta separadamente — basta selecionar, clicar e imprimir o PDF consolidado.
+
+---
+
 ## 🚀 Por que usar o SGV Turbo?
 
 | Sem a extensão | Com o SGV Turbo |
 |---|---|
 | Abrir cada DV, checar campos manualmente, decidir se aprova | Decisão automática em segundos com base nas regras definidas |
 | Copiar e colar mensagem de aprovação manualmente | Mensagem gerada e copiada com um clique |
-| Processar e conferir manualmente valores e parametros da DV | Analise automática ao abrir a DV, conferindo todas as informações necessárias | 
+| Processar e conferir manualmente valores e parâmetros da DV | Análise automática ao abrir a DV, conferindo todas as informações necessárias |
 | Conferir planilha da transportadora à mão | Upload do .xlsx e resultado automático por entrada |
 | Consultar assistências uma a uma | Consulta em lote, resultado de todas de uma vez |
 | Alterar status de assistência manualmente em cada registro | Seleção múltipla e alteração em lote com um clique |
+| Montar relatório de assistências manualmente | PDF gerado automaticamente com ranking de incidências por produto |
+| Somar valores dos pedidos de entrega manualmente | Total calculado e exibido automaticamente na própria página |
+| Baixar e imprimir etiquetas uma a uma | Seleção em lote e download de um único PDF com todas as etiquetas |
 
 ---
+
 ## ⏱️ Relatório de desempenho — tempo economizado
 
 Os dados abaixo comparam o tempo médio gasto para executar 20 unidades de cada tarefa **manualmente no SGV** versus utilizando o **SGV Turbo**. Os valores foram calculados com base em tempos médios de carregamento de página, velocidade de digitação (~60 WPM) e interações típicas de mouse/cursor em rede de velocidade média.
@@ -188,18 +232,22 @@ A extensão é instalada manualmente no Chrome em modo desenvolvedor. Siga os pa
 
 ## 💡 Como usar
 
-Não é necessário configurar nada. A extensão detecta automaticamente em qual página do SGV você está e exibe o painel correto:
+Não é necessário configurar nada. A extensão detecta automaticamente em qual página você está e exibe o painel correto:
 
 - Na página de **Devoluções** → aparece o Analisador de DV
 - Na página de **Assistências** → aparece o Consultor de Assistências
 - Na página de **Contas** → aparece o Lançador Financeiro
+- Na página de **Entregas / Pedidos Disponíveis** → aparece a Soma de Entregas automaticamente
+- Na página de **Etiquetas do Vercan** → aparece o módulo de Etiquetas
 
 Se o painel não estiver visível, clique no ícone 🔥 da extensão na barra do Chrome e escolha o módulo desejado.
+
+Cada módulo e cada aba dentro dos módulos pode ser ativado ou desativado individualmente nas **configurações da extensão** — clique em ⚙️ Configurar funcionalidades no popup do ícone 🔥 para gerenciar quais painéis e abas você quer que apareçam.
 
 ---
 
 ## ⚠️ Observações
 
-- A extensão funciona **somente** nas páginas do SGV (`app.mamm.com.br/SGV`). Ela não acessa nenhum outro site.
-- Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e o sistema SGV.
+- Os módulos do SGV funcionam **somente** nas páginas do SGV (`app.mamm.com.br/SGV`). O módulo de Etiquetas funciona somente no Vercan (`opcaomoveis.verp.vercan.com.br`). A extensão não acessa nenhum outro site.
+- Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV e Vercan.
 - Requer Google Chrome. Não é compatível com outros navegadores.
