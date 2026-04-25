@@ -45,6 +45,24 @@ Para conferir a planilha de retornos enviada pela transportadora:
 - Consulta cada entrada no sistema SGV e classifica como **COLETA** ou **BARRADO**.
 - Exibe o resultado linha a linha com barra de progresso, e permite copiar tudo para a área de transferência.
 
+**Aba: NF DV**
+
+Para localizar rapidamente a nota fiscal de compra de um produto envolvido em uma DV:
+
+- Você informa o código do produto.
+- A extensão consulta o histórico de compras do sistema, encontra a NF mais recente e exibe o número junto com os dados do produto (descrição, código do fabricante, fornecedor).
+- Se o produto não for encontrado no período padrão, oferece a opção de buscar em um período maior.
+- O número da NF pode ser copiado com um clique.
+
+**Aba: Solicitar Troca**
+
+Para agilizar o processo de solicitação de troca junto ao fabricante a partir de um chamado de assistência técnica:
+
+- Você informa o número do **Chamado** (aberto no sistema `news.mamm.com.br`).
+- A extensão acessa o chamado automaticamente, extrai o **PV** vinculado, identifica o **produto reclamado** e o **defeito** descritos no chamado, e busca o **nome do cliente** e a **data de compra** no SGV.
+- Preenche automaticamente o campo do fabricante e o e-mail de destino com base na lista de fabricantes cadastrada.
+- Ao clicar em **Copiar & Abrir Gmail**: copia o corpo do e-mail já formatado em HTML, abre o Gmail com assunto e destinatário preenchidos, **baixa automaticamente todos os arquivos de mídia do chamado** (fotos, vídeos, documentos) com nome no formato `PV(X) - CH(X)`, e **gera e baixa o PDF do pedido de venda** automaticamente.
+
 ---
 
 ### 🔍 2. Consultor de Assistências
@@ -63,7 +81,7 @@ Aparece automaticamente na página de consulta de Assistências Técnicas.
 
 **Aba: Solicitar NF**
 
-Gera automaticamente uma mensagem padronizada para solicitar nota fiscal de um produto de assistência, já preenchida com os dados da assistência consultada.
+Gera automaticamente uma mensagem padronizada para solicitar nota fiscal de transporte de um produto de assistência técnica, já preenchida com os dados da assistência consultada (número, PV, produto, peças, dimensões, peso e transportadora).
 
 **Aba: Gerar Relatório**
 
@@ -73,6 +91,16 @@ Para análise e acompanhamento de incidências de assistências técnicas:
 - Agrupa os dados por produto, contando o número de incidências de cada um e as peças mais solicitadas.
 - **Gera um PDF profissional** com ranking de produtos por incidência, lista de peças por produto com número e descrição, período analisado e data de geração — pronto para ser enviado ao fabricante ou usado internamente.
 - Ideal para identificar os produtos com mais problemas técnicos e embasar solicitações de peças ou melhorias junto aos fornecedores.
+
+**Aba: Fabricantes**
+
+Para gerar e-mails de solicitação de assistência técnica de forma rápida e padronizada:
+
+- Após consultar assistências em lote, você seleciona as que deseja e a extensão busca automaticamente os dados de cada uma (produto, chamado, fabricante).
+- Cruza o fabricante com uma **lista de e-mails pré-cadastrada** (com mais de 35 fabricantes) e preenche o destinatário e CC automaticamente.
+- **Baixa automaticamente os arquivos anexados ao chamado** (fotos, documentos) do sistema `news.mamm.com.br` diretamente para o computador, sem precisar abrir o chamado manualmente.
+- Gera os dados do e-mail prontos para envio, com todos os campos preenchidos.
+- A lista de fabricantes é compartilhada com a aba **Solicitar Troca** do Analisador de DV, garantindo consistência entre os dois módulos.
 
 ---
 
@@ -127,9 +155,12 @@ Aparece automaticamente na página de etiquetas do sistema **Vercan** (opcaomove
 | Copiar e colar mensagem de aprovação manualmente | Mensagem gerada e copiada com um clique |
 | Processar e conferir manualmente valores e parâmetros da DV | Análise automática ao abrir a DV, conferindo todas as informações necessárias |
 | Conferir planilha da transportadora à mão | Upload do .xlsx e resultado automático por entrada |
+| Buscar NF de compra de um produto navegando no sistema fiscal | Código do produto → número da NF em segundos |
+| Abrir chamado, buscar PV, escrever e-mail de solicitação de troca, buscar e-mail do fabricante, baixar anexos, gerar PDF do pedido | Número do chamado → e-mail pronto, anexos e PDF gerados automaticamente |
 | Consultar assistências uma a uma | Consulta em lote, resultado de todas de uma vez |
 | Alterar status de assistência manualmente em cada registro | Seleção múltipla e alteração em lote com um clique |
 | Montar relatório de assistências manualmente | PDF gerado automaticamente com ranking de incidências por produto |
+| Abrir chamado no news.mamm.com.br para baixar cada anexo individualmente | Anexos baixados automaticamente ao gerar o e-mail de assistência |
 | Somar valores dos pedidos de entrega manualmente | Total calculado e exibido automaticamente na própria página |
 | Baixar e imprimir etiquetas uma a uma | Seleção em lote e download de um único PDF com todas as etiquetas |
 
@@ -203,16 +234,53 @@ Inclui todas as etapas acima, mais:
 
 ---
 
-### 📊 Comparativo geral — 20 unidades de cada tarefa (60 ações no total)
+### 🔎 NF DV — busca de nota fiscal de compra (20 produtos)
+
+| Etapa manual | Tempo est. |
+|---|---|
+| Navegar até o sistema de compras/fiscal | ~10s |
+| Pesquisar pelo produto | ~15s |
+| Filtrar e localizar a NF no período correto | ~60s |
+| Anotar/copiar o número da NF | ~5s |
+| **Total por produto** | **~90s (~1min 30s)** |
+
+| | Manual | SGV Turbo | Economia |
+|---|---|---|---|
+| Tempo total (20 produtos) | ~30min | ~1min 20s | **~28min 40s (~96%)** |
+
+---
+
+### 🔁 Solicitar Troca — e-mail de troca ao fabricante (20 chamados)
+
+| Etapa manual | Tempo est. |
+|---|---|
+| Abrir chamado e identificar o PV | ~15s |
+| Buscar o PV no SGV para pegar dados do cliente e data | ~20s |
+| Identificar produto e defeito no chamado | ~25s |
+| Buscar e-mail do fabricante | ~20s |
+| Escrever e-mail formatado | ~90s |
+| Baixar anexos do chamado um a um | ~40s |
+| Gerar/salvar PDF do pedido | ~30s |
+| **Total por chamado** | **~240s (~4min)** |
+
+| | Manual | SGV Turbo | Economia |
+|---|---|---|---|
+| Tempo total (20 chamados) | ~80min | ~4min | **~76min (~95%)** |
+
+---
+
+### 📊 Comparativo geral — 20 unidades de cada tarefa (100 ações no total)
 
 | Tarefa | Manual | SGV Turbo |
 |---|---|---|
 | DV sem retira (×20) | ~37min 20s | ~3min |
 | DV com retira (×20) | ~47min 20s | ~5min |
 | Assistências (×20) | ~15min 40s | ~49s |
-| **Total** | **~1h 40min** | **~8min 49s** |
+| NF DV (×20) | ~30min | ~1min 20s |
+| Solicitar Troca (×20) | ~80min | ~4min |
+| **Total** | **~3h 30min** | **~14min** |
 
-> **Economia total: ~1h 31min — aproximadamente 91% menos tempo** para executar o mesmo volume de trabalho.
+> **Economia total: ~3h 16min — aproximadamente 93% menos tempo** para executar o mesmo volume de trabalho.
 
 ---
 
@@ -248,6 +316,7 @@ Cada módulo e cada aba dentro dos módulos pode ser ativado ou desativado indiv
 
 ## ⚠️ Observações
 
-- Os módulos do SGV funcionam **somente** nas páginas do SGV (`app.mamm.com.br/SGV`). O módulo de Etiquetas funciona somente no Vercan (`opcaomoveis.verp.vercan.com.br`). A extensão não acessa nenhum outro site.
-- Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV e Vercan.
+- Os módulos do SGV funcionam **somente** nas páginas do SGV (`app.mamm.com.br/SGV`). O módulo de Etiquetas funciona somente no Vercan (`opcaomoveis.verp.vercan.com.br`). A extensão não acessa nenhum outro site além do `news.mamm.com.br` para buscar dados de chamados de assistência.
+- Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV, Vercan e News.
 - Requer Google Chrome. Não é compatível com outros navegadores.
+- Para as funcionalidades que acessam chamados no `news.mamm.com.br` (aba Solicitar Troca e download de anexos), é necessário estar logado nesse sistema no navegador.
