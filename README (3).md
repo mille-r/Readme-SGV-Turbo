@@ -92,15 +92,23 @@ Para análise e acompanhamento de incidências de assistências técnicas:
 - **Gera um PDF profissional** com ranking de produtos por incidência, lista de peças por produto com número e descrição, período analisado e data de geração — pronto para ser enviado ao fabricante ou usado internamente.
 - Ideal para identificar os produtos com mais problemas técnicos e embasar solicitações de peças ou melhorias junto aos fornecedores.
 
-**Aba: Fabricantes**
+**Geração de e-mails integrada à consulta**
 
-Para gerar e-mails de solicitação de assistência técnica de forma rápida e padronizada:
+Após consultar as assistências em lote, o botão **📧 Gerar E-mails Selecionadas** aparece diretamente na aba de Consulta, sem precisar trocar de aba:
 
-- Após consultar assistências em lote, você seleciona as que deseja e a extensão busca automaticamente os dados de cada uma (produto, chamado, fabricante).
-- Cruza o fabricante com uma **lista de e-mails pré-cadastrada** (com mais de 35 fabricantes) e preenche o destinatário e CC automaticamente.
-- **Baixa automaticamente os arquivos anexados ao chamado** (fotos, documentos) do sistema `news.mamm.com.br` diretamente para o computador, sem precisar abrir o chamado manualmente.
-- Gera os dados do e-mail prontos para envio, com todos os campos preenchidos.
-- A lista de fabricantes é compartilhada com a aba **Solicitar Troca** do Analisador de DV, garantindo consistência entre os dois módulos.
+- A extensão busca automaticamente os dados de cada assistência selecionada (produto, chamado, fabricante) e gera um **card individual** para cada uma.
+- Cruza o fabricante com a **lista de fabricantes** e preenche o destinatário e CC automaticamente. Os campos ficam editáveis antes do envio.
+- Ao clicar em **Copiar & Abrir Gmail**, copia o e-mail formatado em HTML, abre o Gmail com assunto e destinatário preenchidos e **baixa automaticamente os arquivos anexados ao chamado** (fotos, documentos) do sistema `news.mamm.com.br`.
+- A mesma lista de fabricantes é utilizada pela aba **Solicitar Troca** do Analisador de DV, garantindo consistência entre os dois módulos.
+
+**Lista de Fabricantes**
+
+Acessível pelo botão **🏭 Lista de Fabricantes** no popup do ícone 🔥, disponível a qualquer momento independentemente da página aberta:
+
+- Exibe todos os fabricantes cadastrados com nome, e-mail e CC.
+- Possui campo de busca para localizar rapidamente um fabricante pelo nome.
+- A lista é **sincronizada automaticamente com um banco de dados** alimentado e mantido pela equipe de assistência técnica — sempre que um novo fabricante é cadastrado ou um e-mail é atualizado, a extensão reflete a mudança em tempo real.
+- O botão **🔄 Atualizar lista** força uma nova sincronização manualmente quando necessário.
 
 ---
 
@@ -161,6 +169,7 @@ Aparece automaticamente na página de etiquetas do sistema **Vercan** (opcaomove
 | Alterar status de assistência manualmente em cada registro | Seleção múltipla e alteração em lote com um clique |
 | Montar relatório de assistências manualmente | PDF gerado automaticamente com ranking de incidências por produto |
 | Abrir chamado no news.mamm.com.br para baixar cada anexo individualmente | Anexos baixados automaticamente ao gerar o e-mail de assistência |
+| Buscar e-mail do fabricante em planilha ou agenda | Lista de fabricantes sempre atualizada no popup, sincronizada com o banco de dados da assistência técnica |
 | Somar valores dos pedidos de entrega manualmente | Total calculado e exibido automaticamente na própria página |
 | Baixar e imprimir etiquetas uma a uma | Seleção em lote e download de um único PDF com todas as etiquetas |
 
@@ -319,4 +328,4 @@ Cada módulo e cada aba dentro dos módulos pode ser ativado ou desativado indiv
 - Os módulos do SGV funcionam **somente** nas páginas do SGV (`app.mamm.com.br/SGV`). O módulo de Etiquetas funciona somente no Vercan (`opcaomoveis.verp.vercan.com.br`). A extensão não acessa nenhum outro site além do `news.mamm.com.br` para buscar dados de chamados de assistência.
 - Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV, Vercan e News.
 - Requer Google Chrome. Não é compatível com outros navegadores.
-- Para as funcionalidades que acessam chamados no `news.mamm.com.br` (aba Solicitar Troca e download de anexos), é necessário estar logado nesse sistema no navegador.
+- Para as funcionalidades que acessam chamados no `news.mamm.com.br` (aba Solicitar Troca e download de anexos do Consultor de Assistências), é necessário estar logado nesse sistema no navegador.
