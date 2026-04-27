@@ -329,6 +329,7 @@ Cada módulo e cada aba dentro dos módulos pode ser ativado ou desativado indiv
 - Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV, Vercan e News.
 - Requer Google Chrome. Não é compatível com outros navegadores.
 - Para as funcionalidades que acessam chamados no `news.mamm.com.br` (aba Solicitar Troca e download de anexos do Consultor de Assistências), é necessário estar logado nesse sistema no navegador.
+---
 
 🛠️ Como foi construído — Tecnologias e conceitos utilizados
 
