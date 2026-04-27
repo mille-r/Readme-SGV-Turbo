@@ -1,0 +1,33 @@
+# Privacy Policy — SGV Turbo
+
+**Last updated:** April 27, 2026
+
+## English
+
+SGV Turbo is a private internal Chrome extension developed exclusively for use by Opção Móveis employees. It is not available to the general public.
+
+**Data collection:** SGV Turbo does not collect, store, or transmit any personal data from users. The extension does not gather names, emails, passwords, financial data, or any personally identifiable information.
+
+**Data usage:** The extension interacts exclusively with internal operational systems of Opção Móveis (SGV system and internal Supabase database). All data accessed is operational in nature (service order numbers, return records, logistics data) and remains within the company's own infrastructure.
+
+**Third-party sharing:** No data is shared with third parties under any circumstances.
+
+**Local storage:** The extension uses the browser's local storage (`localStorage` and `chrome.storage.local`) solely to save user preferences (visible panels, settings) and temporary operational cache (e.g., flagged return records). This data never leaves the user's device.
+
+**Contact:** For any questions, contact the internal development team at Opção Móveis.
+
+---
+
+## Português
+
+O SGV Turbo é uma extensão privada do Google Chrome desenvolvida exclusivamente para uso interno dos colaboradores da Opção Móveis. Não está disponível para o público geral.
+
+**Coleta de dados:** O SGV Turbo não coleta, armazena nem transmite nenhum dado pessoal dos usuários. A extensão não captura nomes, e-mails, senhas, dados financeiros ou qualquer informação pessoalmente identificável.
+
+**Uso dos dados:** A extensão interage exclusivamente com os sistemas operacionais internos da Opção Móveis (sistema SGV e banco de dados interno Supabase). Todos os dados acessados são de natureza operacional (números de ordens de serviço, registros de devoluções, dados logísticos) e permanecem dentro da própria infraestrutura da empresa.
+
+**Compartilhamento com terceiros:** Nenhum dado é compartilhado com terceiros em nenhuma circunstância.
+
+**Armazenamento local:** A extensão utiliza o armazenamento local do navegador (`localStorage` e `chrome.storage.local`) apenas para salvar preferências do usuário (painéis visíveis, configurações) e cache operacional temporário (ex: DVs barrados). Esses dados nunca saem do dispositivo do usuário.
+
+**Contato:** Para dúvidas, entre em contato com a equipe de desenvolvimento interno da Opção Móveis.
