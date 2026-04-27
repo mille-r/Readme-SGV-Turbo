@@ -329,3 +329,41 @@ Cada módulo e cada aba dentro dos módulos pode ser ativado ou desativado indiv
 - Nenhum dado é enviado para servidores externos. Tudo acontece diretamente entre o seu navegador e os sistemas SGV, Vercan e News.
 - Requer Google Chrome. Não é compatível com outros navegadores.
 - Para as funcionalidades que acessam chamados no `news.mamm.com.br` (aba Solicitar Troca e download de anexos do Consultor de Assistências), é necessário estar logado nesse sistema no navegador.
+
+🛠️ Como foi construído — Tecnologias e conceitos utilizados
+
+🧱 Extensão do Chrome
+O SGV Turbo é uma Chrome Extension — um pacote de arquivos que o próprio Chrome instala e executa. A estrutura é baseada em três tipos de script:
+Content Scripts — arquivos JavaScript injetados automaticamente pelo Chrome nas páginas do SGV e do Vercan. É o coração da extensão: eles leem o conteúdo da página (campos, tabelas, formulários), criam o painel lateral visualmente e executam as automações. Cada módulo tem seu próprio content script (content.js, assistencia_content.js, financeiro_content.js, entregas_content.js).
+Background Script — script que roda em segundo plano, fora de qualquer página. É usado para tarefas que o content script não pode fazer diretamente: buscar arquivos de outros domínios (como os anexos do news.mamm.com.br), gerar PDFs via Chrome Debugger API, e sincronizar a lista de fabricantes com o banco de dados externo.
+Manifest (manifest.json) — arquivo de configuração da extensão. Define quais páginas cada script monitora, quais permissões o Chrome deve conceder (acesso a abas, downloads, debugger etc.) e quais arquivos compõem a extensão.
+
+🖥️ Injeção de interface no sistema
+O painel lateral do SGV Turbo não é parte do sistema SGV — ele é criado e injetado dinamicamente pelo content script usando DOM Manipulation: criação de elementos HTML (div, button, input, select) via JavaScript puro, estilizados com CSS próprio injetado na página. É como "colar" uma janela nova dentro de um site que não foi feito para isso.
+MutationObserver é a técnica usada para detectar mudanças na página sem ficar verificando repetidamente. Em vez de checar a cada segundo se um popup do SGV foi aberto, o MutationObserver observa a árvore do DOM e dispara uma função somente quando algo muda — muito mais eficiente para o navegador.
+
+🤖 Automação de formulários
+Para aprovar DVs, alterar status de assistências e preencher lançamentos financeiros, a extensão usa DOM Interaction — simula as mesmas ações que um usuário faria manualmente: localiza campos pelos seus seletores CSS ou IDs, preenche valores, dispara eventos de teclado (change, click, keydown) e aguarda o sistema processar antes de continuar.
+Como o SGV é um sistema legado em ASP.NET com postbacks (a página recarrega parcialmente a cada ação), a extensão usa setTimeout e verificação de estado para esperar o resultado antes de prosseguir para o próximo passo — sem travar o navegador.
+
+📡 Comunicação entre scripts
+Content scripts e background script não se comunicam diretamente — eles usam a Chrome Extensions Messaging API: chrome.runtime.sendMessage envia uma mensagem e chrome.runtime.onMessage a recebe. Isso é necessário porque cada script roda em um contexto isolado do Chrome. Por exemplo: quando a aba Solicitar Troca precisa baixar um anexo do news.mamm.com.br, o content script envia uma mensagem ao background, que faz o download e devolve o arquivo em base64.
+
+🗄️ Armazenamento de dados
+chrome.storage.sync — armazena as preferências do usuário (quais módulos estão ativos, configurações das abas) na conta Google do Chrome, sincronizando entre computadores automaticamente.
+chrome.storage.local — armazena dados maiores localmente, como a lista de fabricantes baixada do banco de dados, com timestamp do último sync.
+localStorage — usado pontualmente para guardar dados de sessão entre navegações de página (como a lista de DVs em processamento na Fila Automática).
+
+☁️ Banco de dados externo
+A lista de fabricantes é sincronizada com o Supabase via Edge Function — uma função que roda nos servidores do Supabase e devolve a lista atualizada em JSON. O background script faz essa requisição ao iniciar o Chrome e sempre que o usuário clica em "Atualizar lista". Se a sincronização falhar, a extensão usa a lista em cache salva localmente.
+
+📄 Geração de PDF
+Para gerar o PDF do pedido de venda na aba Solicitar Troca, a extensão usa a Chrome Debugger API — uma API avançada do Chrome que permite controlar uma aba como se fosse um desenvolvedor usando o DevTools. A extensão abre a página do pedido em segundo plano, ativa o debugger, aciona o comando de impressão em PDF e captura o arquivo resultante, tudo sem que o usuário precise interagir com nada.
+
+📊 Leitura de planilhas
+SheetJS (xlsx) é a biblioteca usada para ler os arquivos .xlsx da Grade da Transportadora diretamente no navegador. O arquivo é carregado via FileReader, convertido para um objeto JavaScript e percorrido linha a linha para extrair NF, CPF e nome do cliente — sem precisar de nenhum servidor.
+
+🔗 Requisições HTTP dentro da extensão
+Para consultar dados no SGV (status de assistências, valores de pedidos, dados de DVs), a extensão usa fetch diretamente nas páginas do SGV — já que o content script roda no mesmo contexto do site, ele tem as mesmas permissões de sessão que o usuário logado, sem precisar de autenticação separada. Para acessar outros domínios (como news.mamm.com.br), o background script faz as requisições, contornando as restrições de CORS que impediriam o content script de fazê-las diretamente.
+
+Idealizado e desenvolvido por Rodrigo Miller
